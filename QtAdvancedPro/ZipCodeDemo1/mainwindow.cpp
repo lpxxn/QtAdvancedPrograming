@@ -38,14 +38,24 @@
 #include <QStatusBar>
 #include <QTableView>
 #include <QVBoxLayout>
+
+#ifdef CUSTOM_MODEL
+#include "tablemodel.h"
+#else
 #include "standardtablemodel.h"
+#endif
+
 #include <QStatusBar>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
 
+#ifdef CUSTOM_MODEL
+    model =new TableModel(this);
+#else
     model = new StandardTableModel(this);
+#endif
 
 
     proxyModel = new ProxyModel(this);
@@ -138,7 +148,10 @@ bool MainWindow::save()
 void MainWindow::addZipcode()
 {
     dontFilterOrSelectRadioButton->click();
-
+#ifdef CUSTOM_MODEL
+    if(!model->insertRow(model->rowCount()));
+        return;
+#else
     QList<QStandardItem*> items;
     QStandardItem *zipItem = new QStandardItem;
     zipItem->setData(MinZipcode, Qt::EditRole);
@@ -146,7 +159,7 @@ void MainWindow::addZipcode()
     for (int i = 0; i < model->columnCount() - 1; ++i)
         items << new QStandardItem(tr("(Unknown)"));
     model->appendRow(items);
-
+#endif
     tableView->scrollToBottom();
     tableView->setFocus();
     QModelIndex index = proxyModel->index(proxyModel->rowCount() - 1,
@@ -265,9 +278,13 @@ void MainWindow::createLayout()
 
 void MainWindow::createConnections()
 {
-
+#ifdef CUSTOM_MODEL
+    connect(model, SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)),this, SLOT(setDirty()));
+#else
     connect(model, SIGNAL(itemChanged(QStandardItem*)),
             this, SLOT(setDirty()));
+#endif
+
 
     connect(model, SIGNAL(rowsRemoved(const QModelIndex&,int,int)),
             this, SLOT(setDirty()));
@@ -349,6 +366,7 @@ bool MainWindow::matchingColumn(const QString &value, int row, int column)
 void MainWindow::deleteZipcode()
 {
     QItemSelectionModel *selectionModel = tableView->selectionModel();
+
     if (!selectionModel->hasSelection())
         return;
     QModelIndex index = proxyModel->mapToSource(

@@ -60,8 +60,10 @@ QWidget *ItemDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem 
             << "Utah" << "Vermont" << "Virginia" << "Washington"
             << "West Virginia" << "Wisconsin" << "Wyoming";
 
-    if (index.column() == Zipcode)
+    if (index.column() == Zipcode) {
         return new ZipcodeSpinBox(parent);
+
+    }
     if (index.column() == State) {
         QComboBox *editor = new QComboBox(parent);
         editor->addItems(usStates);

@@ -1,0 +1,15 @@
+INPUT(
+./debug\zipcodespinbox.o
+./debug\itemdelegate.o
+./debug\proxymodel.o
+./debug\uniqueproxymodel.o
+./debug\mainwindow.o
+./debug\main.o
+./debug\tablemodel.o
+./debug\moc_zipcodespinbox.o
+./debug\moc_itemdelegate.o
+./debug\moc_proxymodel.o
+./debug\moc_uniqueproxymodel.o
+./debug\moc_mainwindow.o
+./debug\moc_tablemodel.o
+);

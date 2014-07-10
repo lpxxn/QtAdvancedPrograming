@@ -1,0 +1,15 @@
+INPUT(
+./release\zipcodespinbox.o
+./release\itemdelegate.o
+./release\proxymodel.o
+./release\uniqueproxymodel.o
+./release\mainwindow.o
+./release\main.o
+./release\tablemodel.o
+./release\moc_zipcodespinbox.o
+./release\moc_itemdelegate.o
+./release\moc_proxymodel.o
+./release\moc_uniqueproxymodel.o
+./release\moc_mainwindow.o
+./release\moc_tablemodel.o
+);

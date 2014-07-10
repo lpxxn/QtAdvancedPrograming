@@ -11,8 +11,11 @@ class QPushButton;
 class QRadioButton;
 class QSpinBox;
 class QTableView;
-
+#ifdef CUSTOM_MODEL
+class TableModel;
+#else
 class StandardTableModel;
+#endif
 class ProxyModel;
 
 class MainWindow : public QMainWindow
