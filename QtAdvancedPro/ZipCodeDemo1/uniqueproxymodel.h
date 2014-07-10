@@ -3,6 +3,10 @@
 
 #include <QSortFilterProxyModel>
 #include <QSet>
+/*!
+ * \brief The UniqueProxyModel class
+ *过滤行里的内容 找到不重复的内容
+ */
 class UniqueProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT

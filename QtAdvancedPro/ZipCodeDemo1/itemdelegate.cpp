@@ -3,7 +3,7 @@
 #include <QPainter>
 #include <QComboBox>
 #include "zipcodespinbox.h"
-
+#include <QDebug>
 ItemDelegate::ItemDelegate(QObject *parent) :
     QStyledItemDelegate(parent)
 {
@@ -20,13 +20,18 @@ void ItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
         painter->save();
         painter->setRenderHints(QPainter::Antialiasing|
                                 QPainter::TextAntialiasing);
+
         if (opt.state & QStyle::State_Selected) {
+            qDebug()<<"state  ..:"<<opt.state;
             painter->fillRect(opt.rect, opt.palette.highlight());
             painter->setPen(opt.palette.highlightedText().color());
         }
-        else
-            painter->setPen(opt.palette.windowText().color());
-        painter->drawText(opt.rect.adjusted(0, 0, -3, 0), text,
+        else {
+            //painter->setPen(opt.palette.windowText().color());
+            painter->setPen(Qt::red);
+        }
+        //adjuested 是在原来的 Rect 坐标之上加上新给的数据 如原来是0,0,10,10 新给的是0,0,-5,0 得到的是0,0,5,10
+        painter->drawText(opt.rect.adjusted(0, 0, -10, 0), text,
                 QTextOption(Qt::AlignVCenter|Qt::AlignRight));
         painter->restore();
     }
