@@ -1,0 +1,13 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\richtextdelegate.o
+./release\richtextlineedit.o
+./release\standarditem.o
+./release\standardtreemodel.o
+./release\qrc_timelog.o
+./release\moc_mainwindow.o
+./release\moc_richtextdelegate.o
+./release\moc_richtextlineedit.o
+./release\moc_standardtreemodel.o
+);

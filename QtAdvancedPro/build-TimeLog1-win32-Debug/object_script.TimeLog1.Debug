@@ -1,0 +1,13 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\richtextdelegate.o
+./debug\richtextlineedit.o
+./debug\standarditem.o
+./debug\standardtreemodel.o
+./debug\qrc_timelog.o
+./debug\moc_mainwindow.o
+./debug\moc_richtextdelegate.o
+./debug\moc_richtextlineedit.o
+./debug\moc_standardtreemodel.o
+);
